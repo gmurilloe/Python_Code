@@ -45,6 +45,26 @@ def dame_numero(mensaje: str) -> int | None:
     return numero
 
 
+def es_primo(numero: int) -> bool:
+    """Devuelve True si el numero es primo.
+
+    Prueba divisores impares hasta la raiz cuadrada del numero:
+    si numero = a * b, uno de los dos factores es <= raiz(numero).
+    """
+    if numero <= 1:
+        return False
+    if numero == 2:
+        return True
+    if numero % 2 == 0:
+        return False
+    divisor = 3
+    while divisor * divisor <= numero:
+        if numero % divisor == 0:
+            return False
+        divisor += 2
+    return True
+
+
 def main() -> None:
     #secret = random.randint(MINIMO, MAXIMO)
 
@@ -57,19 +77,11 @@ def main() -> None:
             continue
         
 
-        if (res <= 1):
-            return False
-            
-        elif (res == 2):
-            print("El numero 2 es un numero primo")
-            break
-            
-        elif (res % 2 == 0):
-            print(f"El numero que digitaste {res}, no es un numero primo!")
-            break
-        else: 
+        if es_primo(res):
             print(f"El numero que digitaste {res}, es un numero primo!")
-            break
+        else:
+            print(f"El numero que digitaste {res}, no es un numero primo!")
+        break
             
             
 
